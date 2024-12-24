@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PortFolio Website</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,41 +10,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <script src="./scripts/scripts.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <canvas id="canvas1"></canvas>
     <script src="./scripts/particle.js"></script>
     <header>
-        <a href="#" class="logo-holder">
-            <div class="logo">S</div>
-            <div class="logo-text">PortFolio Website</div>
+      <a href="#" class="logo-holder">
+        <div class="logo">S</div>
+        <div class="logo-text">PortFolio Website</div>
+      </a>
+      <nav>
+        <ul id="menu" menu>
+          <li>
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="toggleButton"
+                checked
+                onclick="toggleCanvas()"
+              />
+              <span class="slider"></span>
+            </label>
+          </li>
+          <li>
+            <a href="#skills">Skills</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="mailto:paulsayantan96.work@gmail.com" class="button"
+              >Contact Me</a
+            >
+          </li>
+        </ul>
+        <a href="#" class="mobile-toogle" onClick="toggleMobileMenu()">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2"
+              d="M5 7h14M5 12h14M5 17h10"
+            />
+          </svg>
         </a>
-        <nav>
-            <ul id="menu" menu>
-                <li>
-                    <label class="switch">
-                        <input type="checkbox" id="toggleButton" checked onclick="toggleCanvas()">
-                        <span class="slider"></span>
-                    </label>
-                </li>
-                <li>
-                    <a href="#skills">Skills</a>
-                </li>
-                <li>
-                    <a href="#projects">Projects</a>
-                </li>
-                <li>
-                    <a href="mailto:paulsayantan96.work@gmail.com" class="button">Contact Me</a>
-                </li>
-            </ul>
-            <a href="#" class="mobile-toogle" onClick="toggleMobileMenu()">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                </svg>
-            </a>
-        </nav>
+      </nav>
     </header>
     <script src="./scripts/toggleAnimations.js"></script>
     <main>
@@ -161,25 +179,36 @@
                 <div class="right-column">
                     <h3>A bit about me </h3>
 
-                    <p>I am a Senior Full Stack Developer with over 6 years of experience working on diverse projects
-                        for global clients, including Walmart and Renault Nissan. My expertise lies in creating
-                        efficient web and mobile applications using modern frameworks and technologies.</p>
+            <p>
+              I am a Senior Full Stack Developer with over 6 years of experience
+              working on diverse projects for global clients, including Walmart
+              and Renault Nissan. My expertise lies in creating efficient web
+              and mobile applications using modern frameworks and technologies.
+            </p>
 
-                    <p>In my current role at Caspex Tech LLP, I contribute to Walmart&apos;s Entertainment Service
-                        Platform,
-                        where I&apos;ve successfully implemented over 10 scalable frontend solutions, improved code
-                        quality
-                        to 95%, and ensured 99.9% application uptime through proactive production support.</p>
+            <p>
+              In my current role at Caspex Tech LLP, I contribute to
+              Walmart&apos;s Entertainment Service Platform, where I&apos;ve
+              successfully implemented over 10 scalable frontend solutions,
+              improved code quality to 95%, and ensured 99.9% application uptime
+              through proactive production support.
+            </p>
 
-                    <p>Previously, at Carelon Global Solutions, I reduced onboarding time by 20% through comprehensive
-                        code documentation and decreased query response time by 25% by optimizing database performance.
-                        At Renault Nissan, I led efforts to streamline deployment processes, resulting in a 15%
-                        reduction in deployment times.</p>
+            <p>
+              Previously, at Carelon Global Solutions, I reduced onboarding time
+              by 20% through comprehensive code documentation and decreased
+              query response time by 25% by optimizing database performance. At
+              Renault Nissan, I led efforts to streamline deployment processes,
+              resulting in a 15% reduction in deployment times.
+            </p>
 
-                    <p>Beyond coding, I specialize in optimizing workflows, mentoring teams, and solving challenging
-                        problems in Agile Scrum environments. With certifications in AI/ML from IIIT Hyderabad and AWS
-                        Cloud Practitioner Essentials, I continuously expand my expertise to stay ahead in the industry.
-                    </p>
+            <p>
+              Beyond coding, I specialize in optimizing workflows, mentoring
+              teams, and solving challenging problems in Agile Scrum
+              environments. With certifications in AI/ML from IIIT Hyderabad and
+              AWS Cloud Practitioner Essentials, I continuously expand my
+              expertise to stay ahead in the industry.
+            </p>
 
                     <p>Let&apos;s connect and collaborate on creating impactful, scalable, and innovative solutions!</p>
                 </div>
@@ -449,24 +478,28 @@
                 </article>
             </div>
         </div>
-        </section>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p>Email: <a href="mailto:paulsayantan96.work@gmail.com">paulsayantan96.work@gmail.com</a></p>
-                <p>Phone: <a href="tel:+916296267640">+916296267640</a></p>
-                <p>WhatsApp: <a href="tel:+919832482671">+919832482671</a></p>
-            </div>
-            <div class="footer-logo">
-                <a href="#" class="logo-holder">
-                    <div class="logo">S</div>
-                </a>
-            </div>
+      <div class="footer-container">
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <p>
+            Email:
+            <a href="mailto:paulsayantan96.work@gmail.com"
+              >paulsayantan96.work@gmail.com</a
+            >
+          </p>
+          <p>Phone: <a href="tel:+916296267640">+916296267640</a></p>
+          <p>WhatsApp: <a href="tel:+919832482671">+919832482671</a></p>
         </div>
+        <div class="footer-logo">
+          <a href="#" class="logo-holder">
+            <div class="logo">S</div>
+          </a>
+        </div>
+      </div>
     </footer>
-</body>
-
+  </body>
 </html>
