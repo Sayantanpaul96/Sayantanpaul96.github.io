@@ -1,0 +1,419 @@
+/* ─── Google Fonts — must come first ────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ─── Crevo Design Tokens ────────────────────────────────────────────────── */
+@theme {
+  --color-bg:        #0a0a0a;
+  --color-surface:   #161616;
+  --color-card:      #1c1c1c;
+  --color-border:    #2a2a2a;
+  --color-text:      #ffffff;
+  --color-muted:     #868586;
+  --color-muted-2:   #444444;
+  --color-accent:    #00e574;
+  --color-accent-hover: #18ff88;
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans:    "Geist", "Inter", sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: "Geist", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* cursor: none; */
+  overflow-x: hidden;
+}
+/* *, *::before, *::after { cursor: none !important; } */
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; }
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection { background: #00e574; color: #000; }
+
+/* ─── Film grain texture ──────────────────────────────────────────────────── */
+/* ── Frosted-glass aurora overlay for alternating sections ── */
+
+/* ── Glass card — frosted list / table containers ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1.25rem 1.5rem;
+}
+/* suppress the redundant top-border on the first child inside a glass card */
+.glass-card > *:first-child { border-top: none !important; }
+.section-frosted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(1, 8, 16, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 220px;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Dot grid background pattern ───────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* // LABEL // style */
+  .crevo-label {
+    font-family: "Inter", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #868586;
+  }
+  .crevo-label::before { content: "// "; }
+  .crevo-label::after  { content: " //"; }
+
+  /* Crevo split button — text area + red arrow square */
+  .btn-crevo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.0);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0;
+    overflow: hidden;
+    transition: border-color 0.25s;
+    /* cursor: none; */
+  }
+  .btn-crevo:hover { border-color: rgba(255,255,255,0.4); }
+  .btn-crevo-label {
+    padding: 0.7rem 1.2rem;
+    font-family: "Geist", "Inter", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ffffff;
+    white-space: nowrap;
+    line-height: 1.4em;
+  }
+  .btn-crevo-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    background: #00e574;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .btn-crevo:hover .btn-crevo-icon { background: #18ff88; }
+
+  /* Ghost/outline button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #2a2a2a;
+    padding: 0.75rem 1.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ffffff;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: #00e574; color: #00e574; }
+
+  /* Marquee */
+  .marquee-track {
+    display: flex;
+    gap: 2.5rem;
+    animation: marquee-scroll 25s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .no-scroll { overflow: hidden; }
+
+  /* Hero 2-column layout — responsive media query */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1fr 280px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 300px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .hero-grid {
+      grid-template-columns: 1fr 320px;
+    }
+  }
+}
+
+/* ── Aurora Borealis curtains ────────────────────────────────────── */
+/*  Each curtain is a tall vertical gradient strip that skew-waves.   */
+/*  Colors: green dominant → teal mid → violet/purple tip             */
+.aurora-curtain {
+  position: absolute;
+  top: -8%;
+  filter: blur(22px);
+  transform-origin: top center;
+  will-change: transform, opacity;
+}
+
+/* Curtain 1 — far left, blue-green */
+.aurora-curtain.ac1 {
+  left: -8%;
+  width: 52vw;
+  height: 72vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(0,220,160,0.06)      8%,
+    rgba(0,230,140,0.32)     22%,
+    rgba(0,255,120,0.50)     38%,
+    rgba(0,210,150,0.42)     55%,
+    rgba(40,160,200,0.22)    70%,
+    rgba(80,80,200,0.10)     83%,
+    transparent              100%
+  );
+  animation: cw-1 11s ease-in-out infinite;
+}
+
+/* Curtain 2 — left-center, vivid green (hero color of aurora) */
+.aurora-curtain.ac2 {
+  left: 12%;
+  width: 42vw;
+  height: 82vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(0,255,100,0.04)      6%,
+    rgba(0,255,100,0.38)     20%,
+    rgba(20,255,120,0.65)    36%,
+    rgba(0,240,130,0.55)     52%,
+    rgba(0,200,180,0.32)     68%,
+    rgba(100,80,220,0.14)    82%,
+    transparent              100%
+  );
+  filter: blur(18px);
+  animation: cw-2 8s ease-in-out infinite;
+}
+
+/* Curtain 3 — center, tall with violet crown */
+.aurora-curtain.ac3 {
+  left: 30%;
+  width: 50vw;
+  height: 88vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(0,200,180,0.05)      7%,
+    rgba(0,220,150,0.28)     18%,
+    rgba(0,255,140,0.52)     32%,
+    rgba(0,240,160,0.58)     46%,
+    rgba(60,160,220,0.30)    62%,
+    rgba(140,60,230,0.18)    76%,
+    rgba(180,40,220,0.08)    88%,
+    transparent              100%
+  );
+  filter: blur(26px);
+  animation: cw-3 14s ease-in-out infinite;
+}
+
+/* Curtain 4 — right-center, cyan pulse */
+.aurora-curtain.ac4 {
+  left: 50%;
+  width: 44vw;
+  height: 75vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(0,230,200,0.06)      9%,
+    rgba(0,230,200,0.40)     25%,
+    rgba(0,255,180,0.55)     42%,
+    rgba(0,220,160,0.40)     58%,
+    rgba(80,120,230,0.20)    73%,
+    rgba(160,60,220,0.10)    85%,
+    transparent              100%
+  );
+  animation: cw-4 9.5s ease-in-out infinite;
+}
+
+/* Curtain 5 — far right, violet-green */
+.aurora-curtain.ac5 {
+  right: -10%;
+  width: 50vw;
+  height: 78vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(60,200,160,0.05)     8%,
+    rgba(0,220,140,0.30)     22%,
+    rgba(0,240,120,0.44)     38%,
+    rgba(80,180,200,0.32)    55%,
+    rgba(140,80,220,0.20)    70%,
+    rgba(180,40,200,0.10)    83%,
+    transparent              100%
+  );
+  animation: cw-5 12.5s ease-in-out infinite;
+}
+
+/* Curtain 6 — center overlay, wide shimmer veil */
+.aurora-curtain.ac6 {
+  left: 10%;
+  width: 78vw;
+  height: 60vh;
+  background: linear-gradient(180deg,
+    transparent               0%,
+    rgba(0,255,140,0.04)     12%,
+    rgba(0,255,160,0.14)     35%,
+    rgba(40,220,180,0.12)    55%,
+    rgba(100,100,220,0.07)   72%,
+    transparent              100%
+  );
+  filter: blur(40px);
+  animation: cw-6 17s ease-in-out infinite;
+}
+
+@keyframes cw-1 {
+  0%,100% { transform: skewX(0deg)   translateX(0)      scaleX(1);    opacity: 0.80; }
+  25%     { transform: skewX(4.5deg) translateX(2.5%)   scaleX(1.04); opacity: 0.95; }
+  55%     { transform: skewX(-3deg)  translateX(-1.5%)  scaleX(0.96); opacity: 0.85; }
+  78%     { transform: skewX(3deg)   translateX(1.5%)   scaleX(1.02); opacity: 1;    }
+}
+@keyframes cw-2 {
+  0%,100% { transform: skewX(0deg)    translateX(0)     scaleX(1);    opacity: 0.90; }
+  20%     { transform: skewX(-5deg)   translateX(-3%)   scaleX(0.95); opacity: 1;    }
+  50%     { transform: skewX(4deg)    translateX(2%)    scaleX(1.05); opacity: 0.85; }
+  75%     { transform: skewX(-2.5deg) translateX(-1.2%) scaleX(0.98); opacity: 0.95; }
+}
+@keyframes cw-3 {
+  0%,100% { transform: skewX(0deg)   translateX(0)     scaleX(1);    opacity: 0.75; }
+  30%     { transform: skewX(3.5deg) translateX(2%)    scaleX(1.03); opacity: 0.90; }
+  60%     { transform: skewX(-4deg)  translateX(-2%)   scaleX(0.97); opacity: 0.80; }
+  85%     { transform: skewX(2deg)   translateX(1%)    scaleX(1.01); opacity: 0.88; }
+}
+@keyframes cw-4 {
+  0%,100% { transform: skewX(0deg)    translateX(0)     scaleX(1);    opacity: 0.82; }
+  35%     { transform: skewX(-4.5deg) translateX(-2.5%) scaleX(0.96); opacity: 0.98; }
+  65%     { transform: skewX(3.5deg)  translateX(1.8%)  scaleX(1.04); opacity: 0.88; }
+}
+@keyframes cw-5 {
+  0%,100% { transform: skewX(0deg)   translateX(0)    scaleX(1);    opacity: 0.78; }
+  28%     { transform: skewX(5deg)   translateX(2.8%) scaleX(1.05); opacity: 0.92; }
+  58%     { transform: skewX(-3deg)  translateX(-2%)  scaleX(0.96); opacity: 0.83; }
+  82%     { transform: skewX(2.5deg) translateX(1.5%) scaleX(1.02); opacity: 0.95; }
+}
+@keyframes cw-6 {
+  0%,100% { transform: skewX(0deg)   translateX(0)    scaleX(1);    opacity: 0.55; }
+  40%     { transform: skewX(2deg)   translateX(1%)   scaleX(1.02); opacity: 0.70; }
+  75%     { transform: skewX(-1.5deg) translateX(-1%) scaleX(0.98); opacity: 0.60; }
+}
+
+/* ── Contact section — responsive ──────────────────────────────── */
+.contact-section {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+  justify-content: flex-start !important;
+}
+@media (min-width: 768px) {
+  .contact-section {
+    height: 100vh !important;
+    overflow: hidden !important;
+    justify-content: flex-end !important;
+  }
+}
+.contact-heading {
+  font-size: clamp(2.6rem, 10vw, 9rem) !important;
+}
+@media (min-width: 768px) {
+  .contact-heading {
+    font-size: clamp(4rem, 10vw, 9rem) !important;
+  }
+}
+.contact-content {
+  padding: 1.25rem;
+  padding-top: calc(0.75rem + 84px);
+}
+@media (min-width: 768px) {
+  .contact-content {
+    padding: 2.5rem;
+  }
+}
+.contact-cta-mb {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .contact-cta-mb {
+    margin-bottom: 2.5rem;
+  }
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.contact-pages-col {
+  padding: 1.5rem 0;
+  border-right: none;
+  border-bottom: 1px solid #1c1c1c;
+}
+@media (min-width: 768px) {
+  .contact-pages-col {
+    padding: 3rem 3rem 3rem 0;
+    border-right: 1px solid #1c1c1c;
+    border-bottom: none;
+  }
+}
+.contact-info-col {
+  padding: 1.5rem 0;
+}
+@media (min-width: 768px) {
+  .contact-info-col {
+    padding: 3rem 0 3rem 3rem;
+  }
+}
+

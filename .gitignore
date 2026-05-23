@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+node_modules/.tmp/
+
+# env files
+.env
+.env.*
+!.env.example
+
+# editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
