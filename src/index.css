@@ -339,10 +339,7 @@ body {
 
 /* contact base styles — responsive in tablet.css */
 .contact-section {
-  height: auto !important;
   min-height: 100vh;
-  overflow: visible !important;
-  justify-content: flex-start !important;
 }
 .contact-heading {
   font-size: clamp(2.6rem, 10vw, 9rem) !important;

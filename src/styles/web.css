@@ -8,6 +8,15 @@
   .contact-grid {
     grid-template-columns: 1fr 1fr !important;
   }
+  /* Contact section: bottom-anchor content, flush padding */
+  .contact-section {
+    justify-content: flex-end !important;
+    overflow: hidden !important;
+  }
+  .contact-content {
+    padding: 2.5rem !important;
+    padding-top: 2.5rem !important;
+  }
 }
 
 @media (min-width: 1280px) {

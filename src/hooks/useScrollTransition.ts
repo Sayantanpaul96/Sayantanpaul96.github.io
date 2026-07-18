@@ -9,6 +9,7 @@ const MIN_DELTA = 8
 export function useSectionSnap() {
   const busy = useRef(false)
   const touchStartY = useRef(0)
+  const touchInNoSnap = useRef(false)
 
   useEffect(() => {
     function sections() {
@@ -52,10 +53,12 @@ export function useSectionSnap() {
 
     function onTouchStart(e: TouchEvent) {
       if (document.body.style.overflow === 'hidden') return
+      touchInNoSnap.current = !!(e.target as Element).closest('[data-no-snap]')
       touchStartY.current = e.touches[0].clientY
     }
     function onTouchEnd(e: TouchEvent) {
       if (document.body.style.overflow === 'hidden') return
+      if (touchInNoSnap.current) return
       const delta = touchStartY.current - e.changedTouches[0].clientY
       if (Math.abs(delta) > 40) navigate(delta > 0 ? 1 : -1)
     }
