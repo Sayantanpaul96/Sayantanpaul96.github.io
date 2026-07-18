@@ -52,12 +52,10 @@ export function useSectionSnap() {
 
     function onTouchStart(e: TouchEvent) {
       if (document.body.style.overflow === 'hidden') return
-      if (window.innerWidth < 768) return   // let mobile scroll natively
       touchStartY.current = e.touches[0].clientY
     }
     function onTouchEnd(e: TouchEvent) {
       if (document.body.style.overflow === 'hidden') return
-      if (window.innerWidth < 768) return   // let mobile scroll natively
       const delta = touchStartY.current - e.changedTouches[0].clientY
       if (Math.abs(delta) > 40) navigate(delta > 0 ? 1 : -1)
     }
