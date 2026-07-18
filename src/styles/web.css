@@ -4,6 +4,10 @@
   .hero-grid {
     grid-template-columns: 1fr 300px;
   }
+  /* Contact grid: two equal columns side by side */
+  .contact-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
 
 @media (min-width: 1280px) {

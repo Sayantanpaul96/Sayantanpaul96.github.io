@@ -1,8 +1,8 @@
 /* ContactPages — Web (≥ 1025px) */
 @media (min-width: 1025px) {
   .contact-pages-col {
-    padding: 3rem 3rem 3rem 0;
-    border-right: 1px solid #1c1c1c;
+    padding: 2rem;
+    border-right: none;
     border-bottom: none;
   }
 }
