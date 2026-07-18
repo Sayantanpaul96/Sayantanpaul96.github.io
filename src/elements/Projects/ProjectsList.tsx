@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './styles/ProjectsList.web.css'
 import './styles/ProjectsList.tablet.css'
 import './styles/ProjectsList.mobile.css'
