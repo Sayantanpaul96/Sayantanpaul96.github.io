@@ -1,0 +1,31 @@
+.hero-companies {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.hero-companies__label {
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.hero-companies__row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.hero-companies__brand {
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+}
+.hero-companies__brand:hover {
+  color: #ffffff;
+}

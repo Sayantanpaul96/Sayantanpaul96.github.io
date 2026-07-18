@@ -1,0 +1,53 @@
+/* ── Tablet and up (≥ 768px) — contact section & hero grid go full ── */
+
+@media (min-width: 768px) {
+  .contact-section {
+    height: 100vh !important;
+    overflow: hidden !important;
+    justify-content: flex-end !important;
+  }
+  .contact-heading {
+    font-size: clamp(4rem, 10vw, 9rem) !important;
+  }
+  .contact-content {
+    padding: 2.5rem;
+  }
+  .contact-cta-mb {
+    margin-bottom: 2.5rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-pages-col {
+    padding: 3rem 3rem 3rem 0;
+    border-right: 1px solid #1c1c1c;
+    border-bottom: none;
+  }
+  .contact-info-col {
+    padding: 3rem 0 3rem 3rem;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+/* ── Tablet-only (768px – 1024px) ─────────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about-content {
+    /* 30% keeps right-aligned design feel while giving ~70vw readable column */
+    margin-left: 30% !important;
+  }
+  .quals-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .glass-card {
+    padding: 1rem 1.25rem;
+  }
+  .contact-heading {
+    font-size: clamp(3rem, 10vw, 6rem) !important;
+  }
+  .section-inner {
+    padding: 1.75rem !important;
+  }
+}

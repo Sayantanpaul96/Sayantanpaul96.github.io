@@ -1,0 +1,10 @@
+/* HeroCompanies — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-companies__row {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .hero-companies__brand {
+    font-size: 0.85rem !important;
+  }
+}

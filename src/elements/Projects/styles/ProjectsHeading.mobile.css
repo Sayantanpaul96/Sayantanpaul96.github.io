@@ -1,0 +1,15 @@
+/* ProjectsHeading — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .projects-heading {
+    font-size: clamp(3rem, 11vw, 5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  .projects-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .projects-meta p {
+    padding-right: 0 !important;
+  }
+}

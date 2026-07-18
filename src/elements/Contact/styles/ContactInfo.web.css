@@ -1,0 +1,6 @@
+/* ContactInfo — Web (≥ 1025px) */
+@media (min-width: 1025px) {
+  .contact-info-col {
+    padding: 3rem 0 3rem 3rem;
+  }
+}

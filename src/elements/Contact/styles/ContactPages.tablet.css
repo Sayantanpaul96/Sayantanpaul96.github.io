@@ -1,0 +1,8 @@
+/* ContactPages — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .contact-pages-col {
+    padding: 2rem 2rem 2rem 0;
+    border-right: 1px solid #1c1c1c;
+    border-bottom: none;
+  }
+}

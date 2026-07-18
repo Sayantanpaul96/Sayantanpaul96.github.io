@@ -1,0 +1,78 @@
+/* ── Mobile (≤ 767px) ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* ponytail: broad section override — sectionBase inline height:100vh;overflow:hidden;justify-content:flex-end clips/pushes content on small screens */
+  section {
+    height: auto !important;
+    min-height: 100svh;
+    overflow: visible !important;
+    justify-content: flex-start !important;
+  }
+  /* inner content wrappers: prevent height:100% resolving to 100svh via min-height (lets flex spacers take real space) */
+  .hero-content,
+  .about-content {
+    height: auto !important;
+  }
+  .glass-card {
+    padding: 0.75rem 1rem;
+  }
+  .section-inner {
+    padding: 1rem !important;
+    padding-top: calc(1rem + 84px) !important; /* clear fixed navbar */
+  }
+  .about-content {
+    margin-left: 0 !important;
+    padding: 1rem !important;
+    padding-top: calc(1rem + 84px) !important;
+  }
+  .hero-content {
+    padding: 1rem !important;
+    padding-top: calc(1rem + 84px) !important;
+  }
+  /* Hero inner content: tighten spacing between tagline / services / CTA */
+  .hero-content__body {
+    gap: 1.25rem !important;
+    margin-top: 1rem !important;
+  }
+  .quals-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* All content sections: restore bottom-anchoring on mobile */
+  #home,
+  #about,
+  #expertise,
+  #experience,
+  #qualifications,
+  #projects,
+  #contact {
+    height: 100svh !important;
+    min-height: unset !important;
+    justify-content: flex-end !important;
+    overflow: hidden !important;
+  }
+  /* Override top-padding; add gap from the bottom of the viewport */
+  #home .hero-content {
+    padding-top: 1rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  #about .about-content {
+    padding-top: 1rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  #expertise .section-inner,
+  #experience .section-inner,
+  #qualifications .section-inner,
+  #projects .section-inner {
+    padding-top: 1rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  #contact .contact-content {
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-root {
+    display: none !important;
+  }
+}

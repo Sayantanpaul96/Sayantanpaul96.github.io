@@ -1,0 +1,28 @@
+.hero-stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 50%;
+}
+.hero-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 1rem 0;
+}
+.hero-stats__number {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 6rem;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.hero-stats__label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+}

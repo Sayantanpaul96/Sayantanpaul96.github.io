@@ -1,0 +1,10 @@
+/* QualificationsHeading — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .qualifications-heading {
+    font-size: clamp(2.5rem, 10vw, 4.5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  .quals-subtitle {
+    margin-bottom: 1.5rem !important;
+  }
+}

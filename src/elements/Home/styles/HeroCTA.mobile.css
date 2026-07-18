@@ -1,0 +1,10 @@
+/* HeroCTA — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-cta {
+    width: 100%;
+  }
+  .hero-cta__btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

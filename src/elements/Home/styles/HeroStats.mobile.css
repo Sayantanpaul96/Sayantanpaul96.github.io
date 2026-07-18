@@ -1,0 +1,14 @@
+/* HeroStats — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-stats {
+    width: 100% !important;
+  }
+  .hero-stats__number {
+    font-size: 3.5rem !important;
+  }
+  /* show only Years Experience (1) and Global Clients (4) */
+  .hero-stats > div:nth-child(2),
+  .hero-stats > div:nth-child(3) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,81 @@
+.about-bio__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+.about-bio {
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 580px;
+}
+.about-bio__ctas {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.about-bio__btn {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 0;
+}
+.about-bio__btn-label {
+  font-family: "Geist", "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #ffffff;
+  line-height: 1.4em;
+  padding: 10px 20px;
+}
+.about-bio__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  align-self: stretch;
+  background-color: #00e574;
+  font-size: 1rem;
+  color: #000000;
+  flex-shrink: 0;
+}
+.about-bio__link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.about-bio__link-label {
+  font-family: "Geist", "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #ffffff;
+  line-height: 1.4em;
+  padding: 10px 20px;
+}
+.about-bio__link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  align-self: stretch;
+  background-color: #00e574;
+  font-size: 1rem;
+  color: #000000;
+  flex-shrink: 0;
+}

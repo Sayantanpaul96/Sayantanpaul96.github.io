@@ -1,0 +1,7 @@
+/* ExperienceList — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .exp-detail-grid {
+    grid-template-columns: 1fr !important;
+    padding-left: 1.5rem !important;
+  }
+}

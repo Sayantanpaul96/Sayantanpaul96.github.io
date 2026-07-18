@@ -1,0 +1,7 @@
+/* ExperienceHeading — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .experience-heading {
+    font-size: clamp(3rem, 11vw, 5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+}

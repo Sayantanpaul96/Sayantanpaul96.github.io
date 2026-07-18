@@ -1,0 +1,11 @@
+/* ProjectsList — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .project-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  /* hide index/type/year meta column */
+  .project-row-meta {
+    display: none !important;
+  }
+}

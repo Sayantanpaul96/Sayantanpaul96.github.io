@@ -1,0 +1,6 @@
+/* HeroTitle — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-title__heading {
+    font-size: clamp(4.5rem, 12vw, 5.5rem) !important;
+  }
+}

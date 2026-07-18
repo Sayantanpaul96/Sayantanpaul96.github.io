@@ -1,0 +1,24 @@
+.hero-services {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 6px;
+}
+.hero-services__item {
+  display: flex;
+  align-items: center;
+}
+.hero-services__tag {
+  font-family: "Geist", "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-services__divider {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 10px;
+}

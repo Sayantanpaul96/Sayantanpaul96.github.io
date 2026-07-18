@@ -1,0 +1,10 @@
+/* ExpertiseList — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  /* label-only rows — hide tag pills */
+  .expertise-tags {
+    display: none !important;
+  }
+  .expertise-row {
+    flex-wrap: nowrap !important;
+  }
+}

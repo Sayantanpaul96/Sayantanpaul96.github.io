@@ -1,0 +1,8 @@
+.expertise-heading {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  margin: 0 0 3rem;
+}

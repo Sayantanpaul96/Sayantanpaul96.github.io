@@ -3,6 +3,10 @@
 
 @import "tailwindcss";
 
+@import "./styles/web.css";
+@import "./styles/tablet.css";
+@import "./styles/mobile.css";
+
 /* ─── Crevo Design Tokens ────────────────────────────────────────────────── */
 @theme {
   --color-bg:        #0a0a0a;
@@ -170,25 +174,10 @@ body {
 
   .no-scroll { overflow: hidden; }
 
-  /* Hero 2-column layout — responsive media query */
+  /* Hero 2-column layout — responsive in tablet.css / web.css */
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr;
-  }
-  @media (min-width: 768px) {
-    .hero-grid {
-      grid-template-columns: 1fr 280px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .hero-grid {
-      grid-template-columns: 1fr 300px;
-    }
-  }
-  @media (min-width: 1280px) {
-    .hero-grid {
-      grid-template-columns: 1fr 320px;
-    }
   }
 }
 
@@ -348,72 +337,33 @@ body {
   75%     { transform: skewX(-1.5deg) translateX(-1%) scaleX(0.98); opacity: 0.60; }
 }
 
-/* ── Contact section — responsive ──────────────────────────────── */
+/* contact base styles — responsive in tablet.css */
 .contact-section {
   height: auto !important;
   min-height: 100vh;
   overflow: visible !important;
   justify-content: flex-start !important;
 }
-@media (min-width: 768px) {
-  .contact-section {
-    height: 100vh !important;
-    overflow: hidden !important;
-    justify-content: flex-end !important;
-  }
-}
 .contact-heading {
   font-size: clamp(2.6rem, 10vw, 9rem) !important;
-}
-@media (min-width: 768px) {
-  .contact-heading {
-    font-size: clamp(4rem, 10vw, 9rem) !important;
-  }
 }
 .contact-content {
   padding: 1.25rem;
   padding-top: calc(0.75rem + 84px);
 }
-@media (min-width: 768px) {
-  .contact-content {
-    padding: 2.5rem;
-  }
-}
 .contact-cta-mb {
   margin-bottom: 1.5rem;
-}
-@media (min-width: 768px) {
-  .contact-cta-mb {
-    margin-bottom: 2.5rem;
-  }
 }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
-}
-@media (min-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 .contact-pages-col {
   padding: 1.5rem 0;
   border-right: none;
   border-bottom: 1px solid #1c1c1c;
 }
-@media (min-width: 768px) {
-  .contact-pages-col {
-    padding: 3rem 3rem 3rem 0;
-    border-right: 1px solid #1c1c1c;
-    border-bottom: none;
-  }
-}
 .contact-info-col {
   padding: 1.5rem 0;
-}
-@media (min-width: 768px) {
-  .contact-info-col {
-    padding: 3rem 0 3rem 3rem;
-  }
 }
 

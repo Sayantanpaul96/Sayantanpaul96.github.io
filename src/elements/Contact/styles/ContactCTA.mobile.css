@@ -1,0 +1,27 @@
+/* ContactCTA — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .contact-cta__btns {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch;
+  }
+  .contact-cta__btns a {
+    flex: 1;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  /* shorten "Send an email" → "Email" on mobile */
+  .contact-cta__email-label {
+    font-size: 0 !important;
+    padding: 0 12px !important;
+    display: flex;
+    align-items: center;
+  }
+  .contact-cta__email-label::after {
+    content: 'Email';
+    font-size: 0.85rem;
+    font-family: "Geist", "Inter", sans-serif;
+    font-weight: 500;
+    color: #ffffff;
+  }
+}

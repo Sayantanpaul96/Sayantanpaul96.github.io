@@ -1,0 +1,7 @@
+/* ContactHeading — Mobile (≤ 767px) */
+/* .contact-heading font-size is controlled by global index.css */
+@media (max-width: 767px) {
+  .contact-heading__row {
+    margin-bottom: 1rem !important;
+  }
+}

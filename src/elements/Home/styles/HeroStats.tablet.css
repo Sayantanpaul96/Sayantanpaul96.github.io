@@ -1,0 +1,9 @@
+/* HeroStats — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-stats {
+    width: 100% !important;
+  }
+  .hero-stats__number {
+    font-size: 3.5rem !important;
+  }
+}

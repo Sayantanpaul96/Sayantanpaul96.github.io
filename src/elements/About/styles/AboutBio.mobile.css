@@ -1,0 +1,15 @@
+/* AboutBio — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .about-bio {
+    font-size: 0.88rem !important;
+    max-width: 100%;
+  }
+  .about-bio__ctas {
+    flex-direction: column;
+  }
+  .about-bio__ctas a,
+  .about-bio__ctas button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

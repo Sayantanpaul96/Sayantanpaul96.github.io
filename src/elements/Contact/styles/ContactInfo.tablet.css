@@ -1,0 +1,6 @@
+/* ContactInfo — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .contact-info-col {
+    padding: 2rem 0 2rem 2rem;
+  }
+}

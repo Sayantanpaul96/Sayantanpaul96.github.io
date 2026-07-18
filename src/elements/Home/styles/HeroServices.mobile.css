@@ -1,0 +1,7 @@
+/* HeroServices — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  /* show first 3 services only */
+  .hero-services > span:nth-child(n+4) {
+    display: none !important;
+  }
+}

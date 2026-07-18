@@ -1,0 +1,11 @@
+/* ExpertiseList — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .expertise-row {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .expertise-tags {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+/* ProjectsList — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .project-row {
+    grid-template-columns: 5rem 1fr auto;
+    gap: 1.25rem;
+  }
+}

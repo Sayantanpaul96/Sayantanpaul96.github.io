@@ -1,0 +1,7 @@
+/* HeroServices — Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* all services visible on tablet */
+  .hero-services {
+    flex-wrap: wrap;
+  }
+}

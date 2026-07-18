@@ -1,0 +1,24 @@
+/* ExperienceList — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .exp-detail-grid {
+    grid-template-columns: 1fr !important;
+    padding-left: 0 !important;
+    gap: 1.5rem !important;
+  }
+  /* hide role/period meta in collapsed header */
+  .exp-row-meta {
+    display: none !important;
+  }
+  /* hide bullet list — show description + tech only */
+  .exp-detail__bullets {
+    display: none !important;
+  }
+  /* show only first 3 tech tags */
+  .exp-tech__tags span:nth-child(n+4) {
+    display: none !important;
+  }
+  /* hide all other items when one is expanded */
+  .exp-item--hidden {
+    display: none !important;
+  }
+}

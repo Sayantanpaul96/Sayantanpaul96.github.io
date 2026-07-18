@@ -56,7 +56,7 @@ export default function Cursor() {
   }, [])
 
   return (
-    <>
+    <div className="cursor-root">
       {/* dot */}
       <div
         ref={dotRef}
@@ -79,6 +79,6 @@ export default function Cursor() {
           transition: 'width 0.3s, height 0.3s, border-color 0.3s',
         }}
       />
-    </>
+    </div>
   )
 }

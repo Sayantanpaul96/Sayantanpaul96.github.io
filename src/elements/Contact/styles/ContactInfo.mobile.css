@@ -1,0 +1,11 @@
+/* ContactInfo — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .contact-info-col {
+    padding: 1.5rem 1rem;
+  }
+  .contact-info-col a[href^="mailto"],
+  .contact-info-col a[href^="tel"] {
+    font-size: 0.8rem !important;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,7 @@
+/* HeroTagline — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-tagline {
+    max-width: 100% !important;
+    font-size: clamp(0.95rem, 3.5vw, 1.3rem) !important;
+  }
+}

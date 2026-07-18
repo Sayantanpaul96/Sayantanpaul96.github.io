@@ -1,0 +1,14 @@
+/* ContactPages — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .contact-pages-col {
+    padding: 1.5rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid #1c1c1c;
+  }
+  /* show only Core Expertise (2), Experience (3), Qualifications (4) — hide About (1), Projects (5), Contact (6) */
+  .contact-pages-col button:nth-child(2),
+  .contact-pages-col button:nth-child(6),
+  .contact-pages-col button:nth-child(7) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,14 @@
+/* CertificationsCard — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .certifications-card {
+    padding: 0.75rem 1rem;
+  }
+  /* hide credential ID badge */
+  .cert-id {
+    display: none !important;
+  }
+  .cert-item {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+}

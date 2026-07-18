@@ -1,0 +1,32 @@
+.hero-cta {
+  display: flex;
+}
+.hero-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.hero-cta__label {
+  font-family: "Geist", "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #ffffff;
+  line-height: 1.4em;
+  padding: 10px 20px;
+}
+.hero-cta__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  align-self: stretch;
+  background-color: #00e574;
+  font-size: 1rem;
+  color: #000000;
+  flex-shrink: 0;
+}

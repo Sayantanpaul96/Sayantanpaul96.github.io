@@ -1,0 +1,27 @@
+.projects-filter {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.25rem;
+  width: fit-content;
+  border: 1px solid #1c1c1c;
+}
+.projects-filter__tab {
+  font-family: "Inter", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  border: none;
+  border-right: 1px solid #1c1c1c;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.projects-filter__tab:last-child {
+  border-right: none;
+}
+.projects-filter__tab[data-active="true"] {
+  background: #00e574;
+  color: #000000;
+}

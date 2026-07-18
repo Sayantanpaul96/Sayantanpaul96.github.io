@@ -1,0 +1,14 @@
+/* EducationCard — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .education-card {
+    padding: 0.75rem 1rem;
+  }
+  .edu-item {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  /* hide the detail badge (GPA / grade) */
+  .edu-item__detail {
+    display: none !important;
+  }
+}

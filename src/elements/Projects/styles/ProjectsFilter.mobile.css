@@ -1,0 +1,10 @@
+/* ProjectsFilter — Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .projects-filter {
+    width: 100%;
+  }
+  .projects-filter button {
+    flex: 1;
+    font-size: 0.65rem;
+  }
+}
