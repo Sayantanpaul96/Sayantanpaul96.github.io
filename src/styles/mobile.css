@@ -1,73 +1,132 @@
-/* ── Mobile (≤ 767px) ─────────────────────────────────────────── */
+/* ── Mobile (≤ 767px) — Card Stack ───────────────────────────── */
 
 @media (max-width: 767px) {
-  /* ponytail: broad section override — sectionBase inline height:100vh;overflow:hidden;justify-content:flex-end clips/pushes content on small screens */
+  /* ─── CARD STACK CORE ───────────────────────────────────────────
+     Each section sticks at the top of the viewport. As the user
+     scrolls, the next section (higher z-index) slides up from below
+     and covers the previous one — like dealing cards from a deck.
+  ─────────────────────────────────────────────────────────────── */
   section {
-    height: auto !important;
-    min-height: 100svh;
-    overflow: visible !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100svh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
     justify-content: flex-start !important;
+    background: #0a0a0a !important;
   }
-  /* inner content wrappers: prevent height:100% resolving to 100svh via min-height (lets flex spacers take real space) */
-  .hero-content,
+
+  /* Ascending z-index — each card slides on top of the previous */
+  #home           { z-index: 10 !important; background: transparent !important; }
+  #about          { z-index: 11 !important; }
+  #expertise      { z-index: 12 !important; }
+  #experience     { z-index: 13 !important; }
+  #qualifications { z-index: 14 !important; }
+  #projects       { z-index: 15 !important; }
+  #contact        { z-index: 16 !important; }
+
+  /* Rounded top corners + top shadow give a physical card feel */
+  #about, #expertise, #experience, #qualifications, #projects, #contact {
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -6px 32px rgba(0, 0, 0, 0.65);
+  }
+
+  /* ─── CONTENT LAYOUT: top-down, clear fixed navbar (84px) ───── */
+  .hero-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 1.25rem !important;
+    padding-top: calc(84px + 1.25rem) !important;
+    box-sizing: border-box !important;
+  }
+
   .about-content {
-    height: auto !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    margin-left: 0 !important;
+    padding: 1.25rem !important;
+    padding-top: calc(84px + 1.25rem) !important;
+    box-sizing: border-box !important;
   }
+
+  .section-inner {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 1.25rem !important;
+    padding-top: calc(84px + 1.25rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Contact section uses .contact-content instead of .section-inner */
+  .contact-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 1.25rem !important;
+    padding-top: calc(84px + 1.25rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Contact grid: single column on mobile */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-pages-col {
+    border-right: none !important;
+    border-bottom: 1px solid #1c1c1c !important;
+    padding: 1.25rem 1rem !important;
+  }
+  .contact-info-col {
+    padding: 1.25rem 1rem !important;
+  }
+
+  /* ─── COMPONENT OVERRIDES ─────────────────────────────────────── */
+  .hero-content__body {
+    gap: 1rem !important;
+    margin-top: 1.25rem !important;
+  }
+
+  /* Hero stats — compact, show only 2 items */
+  .hero-stats {
+    width: 100% !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .hero-stats__number {
+    font-size: 2.2rem !important;
+  }
+  .hero-stats__item {
+    padding: 0.4rem 0 !important;
+  }
+  .hero-stats > div:nth-child(2),
+  .hero-stats > div:nth-child(3) {
+    display: none !important;
+  }
+
+  /* Glass card */
   .glass-card {
     padding: 0.75rem 1rem;
   }
-  .section-inner {
-    padding: 1rem !important;
-    padding-top: calc(1rem + 84px) !important; /* clear fixed navbar */
-  }
-  .about-content {
-    margin-left: 0 !important;
-    padding: 1rem !important;
-    padding-top: calc(1rem + 84px) !important;
-  }
-  .hero-content {
-    padding: 1rem !important;
-    padding-top: calc(1rem + 84px) !important;
-  }
-  /* Hero inner content: tighten spacing between tagline / services / CTA */
-  .hero-content__body {
-    gap: 1.25rem !important;
-    margin-top: 1rem !important;
-  }
+
+  /* Qualifications grid — single column */
   .quals-grid {
     grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
   }
-  /* All content sections: restore bottom-anchoring on mobile */
-  #home,
-  #about,
-  #expertise,
-  #experience,
-  #qualifications,
-  #projects,
-  #contact {
-    height: 100svh !important;
-    min-height: unset !important;
-    justify-content: flex-end !important;
-    overflow: hidden !important;
+}
+
+/* ── Very small screens (≤ 480px) — extra compact ─────────────── */
+@media (max-width: 480px) {
+  .hero-content,
+  .about-content,
+  .section-inner,
+  .contact-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: calc(84px + 0.75rem) !important;
   }
-  /* Override top-padding; add gap from the bottom of the viewport */
-  #home .hero-content {
-    padding-top: 1rem !important;
-    padding-bottom: 2.5rem !important;
-  }
-  #about .about-content {
-    padding-top: 1rem !important;
-    padding-bottom: 2.5rem !important;
-  }
-  #expertise .section-inner,
-  #experience .section-inner,
-  #qualifications .section-inner,
-  #projects .section-inner {
-    padding-top: 1rem !important;
-    padding-bottom: 2.5rem !important;
-  }
-  #contact .contact-content {
-    padding-bottom: 2.5rem !important;
+  .quals-grid {
+    gap: 0.5rem !important;
   }
 }
 

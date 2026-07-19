@@ -6,6 +6,12 @@ const COOLDOWN_MS = 1100
 /** Min deltaY to count as a real scroll gesture — filters Mac trackpad momentum */
 const MIN_DELTA = 8
 
+/** Snap navigation only applies on desktop (> 1024px). Mobile/tablet uses the
+ *  CSS card-stack (position: sticky + z-index stacking) with native scroll. */
+function isDesktop() {
+  return window.matchMedia('(min-width: 1025px)').matches
+}
+
 export function useSectionSnap() {
   const busy = useRef(false)
   const touchStartY = useRef(0)
@@ -26,6 +32,7 @@ export function useSectionSnap() {
     }
 
     function navigate(dir: 1 | -1) {
+      if (!isDesktop()) return
       if (busy.current) return
       const secs = sections()
       const next = currentIndex(secs) + dir
@@ -36,6 +43,7 @@ export function useSectionSnap() {
     }
 
     function onWheel(e: WheelEvent) {
+      if (!isDesktop()) return  // card stack on mobile/tablet — allow native scroll
       if (document.body.style.overflow === 'hidden') return
       // Let natural scroll happen inside containers marked data-no-snap
       if ((e.target as Element).closest('[data-no-snap]')) return
@@ -46,6 +54,7 @@ export function useSectionSnap() {
     }
 
     function onKeyDown(e: KeyboardEvent) {
+      if (!isDesktop()) return
       if (document.body.style.overflow === 'hidden') return
       if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); navigate(1) }
       if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); navigate(-1) }
@@ -57,6 +66,7 @@ export function useSectionSnap() {
       touchStartY.current = e.touches[0].clientY
     }
     function onTouchEnd(e: TouchEvent) {
+      if (!isDesktop()) return  // card stack on mobile/tablet — allow native scroll
       if (document.body.style.overflow === 'hidden') return
       if (touchInNoSnap.current) return
       const delta = touchStartY.current - e.changedTouches[0].clientY

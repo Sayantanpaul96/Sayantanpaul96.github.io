@@ -2,8 +2,13 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero-stats {
     width: 100% !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
   }
   .hero-stats__number {
-    font-size: 3.5rem !important;
+    font-size: 2.5rem !important;
+  }
+  .hero-stats__item {
+    padding: 0.5rem 0 !important;
   }
 }

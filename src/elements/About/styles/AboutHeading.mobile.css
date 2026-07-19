@@ -1,6 +1,6 @@
 /* AboutHeading — Mobile (≤ 767px) */
 @media (max-width: 767px) {
   .about-heading {
-    font-size: clamp(4.5rem, 11vw, 5rem) !important;
+    font-size: clamp(3rem, 9svh, 5rem) !important;
   }
 }

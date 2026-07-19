@@ -1,7 +1,7 @@
 /* ExpertiseHeading — Mobile (≤ 767px) */
 @media (max-width: 767px) {
   .expertise-heading {
-    font-size: clamp(4.5rem, 11vw, 5rem) !important;
-    margin-bottom: 1.5rem !important;
+    font-size: clamp(3rem, 9svh, 5rem) !important;
+    margin-bottom: 1.25rem !important;
   }
 }

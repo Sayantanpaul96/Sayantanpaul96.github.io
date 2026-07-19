@@ -1,6 +1,6 @@
 /* AboutHeading — Tablet (768px – 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .about-heading {
-    font-size: clamp(4.5rem, 9vw, 7rem) !important;
+    font-size: clamp(3.5rem, 8svh, 6.5rem) !important;
   }
 }

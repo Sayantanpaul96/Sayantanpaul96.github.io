@@ -1,6 +1,9 @@
 /* QualificationsHeading — Tablet (768px – 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .qualifications-heading {
-    font-size: clamp(3rem, 8vw, 6.5rem) !important;
+    font-size: clamp(2.5rem, 7svh, 5.5rem) !important;
+  }
+  .quals-subtitle {
+    margin-bottom: 2rem !important;
   }
 }

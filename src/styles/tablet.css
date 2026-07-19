@@ -1,53 +1,121 @@
-/* ── Tablet and up (≥ 768px) — contact section & hero grid go full ── */
+/* ── Tablet and up (≥ 768px) — shared contact + hero grid rules ── */
 
 @media (min-width: 768px) {
-  .contact-section {
-    height: 100vh !important;
-    overflow: hidden !important;
-    justify-content: flex-end !important;
-  }
   .contact-heading {
-    font-size: clamp(4rem, 10vw, 9rem) !important;
-  }
-  .contact-content {
-    padding: 2.5rem;
-  }
-  .contact-cta-mb {
-    margin-bottom: 2.5rem;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .contact-pages-col {
-    padding: 3rem 3rem 3rem 0;
-    border-right: 1px solid #1c1c1c;
-    border-bottom: none;
-  }
-  .contact-info-col {
-    padding: 3rem 0 3rem 3rem;
+    font-size: clamp(3rem, 8svh, 7rem) !important;
   }
   .hero-grid {
     grid-template-columns: 1fr 280px;
   }
 }
 
-/* ── Tablet-only (768px – 1024px) ─────────────────────────────── */
+/* ── Tablet-only (768px – 1024px) — Card Stack ─────────────────── */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .about-content {
-    /* 30% keeps right-aligned design feel while giving ~70vw readable column */
-    margin-left: 30% !important;
+  /* ─── CARD STACK CORE ──────────────────────────────────────────── */
+  section {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100svh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    background: #0a0a0a !important;
   }
+
+  #home           { z-index: 10 !important; background: transparent !important; }
+  #about          { z-index: 11 !important; }
+  #expertise      { z-index: 12 !important; }
+  #experience     { z-index: 13 !important; }
+  #qualifications { z-index: 14 !important; }
+  #projects       { z-index: 15 !important; }
+  #contact        { z-index: 16 !important; }
+
+  #about, #expertise, #experience, #qualifications, #projects, #contact {
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  /* ─── CONTENT LAYOUT: top-down, clear navbar ─────────────────── */
+  .about-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+    margin-left: 25% !important;
+    padding: 2rem !important;
+    padding-top: calc(84px + 1.5rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 2rem !important;
+    padding-top: calc(84px + 1.5rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  .section-inner {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 2rem !important;
+    padding-top: calc(84px + 1.5rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ─── COMPONENT OVERRIDES ─────────────────────────────────────── */
+  .contact-section {
+    justify-content: flex-start !important;
+  }
+
+  .contact-content {
+    padding: 2rem !important;
+    padding-top: calc(84px + 1.5rem) !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+  }
+
   .quals-grid {
     grid-template-columns: 1fr !important;
   }
+
   .glass-card {
     padding: 1rem 1.25rem;
   }
+
   .contact-heading {
-    font-size: clamp(3rem, 10vw, 6rem) !important;
+    font-size: clamp(3rem, 7svh, 6rem) !important;
   }
-  .section-inner {
-    padding: 1.75rem !important;
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-pages-col {
+    padding: 3rem 3rem 3rem 0;
+    border-right: 1px solid #1c1c1c;
+    border-bottom: none;
+  }
+
+  .contact-info-col {
+    padding: 3rem 0 3rem 3rem;
+  }
+
+  .hero-content__body {
+    gap: 1.25rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .hero-stats {
+    width: 100% !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .hero-stats__number {
+    font-size: 2.5rem !important;
+  }
+  .hero-stats__item {
+    padding: 0.5rem 0 !important;
   }
 }

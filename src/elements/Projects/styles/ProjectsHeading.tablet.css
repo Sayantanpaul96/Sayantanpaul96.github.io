@@ -1,7 +1,7 @@
 /* ProjectsHeading — Tablet (768px – 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .projects-heading {
-    font-size: clamp(3.5rem, 9vw, 7rem) !important;
+    font-size: clamp(3rem, 7.5svh, 6rem) !important;
   }
   .projects-meta {
     flex-direction: column;

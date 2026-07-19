@@ -21,4 +21,9 @@
   .exp-item--hidden {
     display: none !important;
   }
+  /* cap expanded body so it stays within the viewport */
+  .exp-item__body[data-open="true"] {
+    max-height: min(480px, 55svh);
+    overflow-y: auto;
+  }
 }
