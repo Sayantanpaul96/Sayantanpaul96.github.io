@@ -128,6 +128,11 @@
   .quals-grid {
     gap: 0.5rem !important;
   }
+
+  /* Hide hamburger menu — card stack has native scroll navigation */
+  .navbar-menu-btn {
+    display: none !important;
+  }
 }
 
 @media (pointer: coarse) {

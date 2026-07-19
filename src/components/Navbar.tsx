@@ -3,6 +3,9 @@ import { motion } from 'framer-motion'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import EmailIcon from '@mui/icons-material/Email'
 import { SITE_META, NAV_LINKS, CONTACT } from '../constants/content'
 
 // Crevo 3×3 dot grid colors — center dot (#4, 0-indexed) is white, rest aurora green
@@ -13,9 +16,9 @@ const DOT_COLORS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'GH', href: CONTACT.github },
-  { label: 'LN', href: CONTACT.linkedin },
-  { label: 'ML', href: `mailto:${CONTACT.email}` },
+  { label: 'GitHub',   icon: GitHubIcon,   href: CONTACT.github },
+  { label: 'LinkedIn', icon: LinkedInIcon, href: CONTACT.linkedin },
+  { label: 'Email',    icon: EmailIcon,    href: `mailto:${CONTACT.email}` },
 ]
 
 const LABEL_STYLE = {
@@ -99,56 +102,54 @@ export default function Navbar({ loaded }: { loaded: boolean }) {
           </Typography>
         </Box>
 
-        {/* Nav Social — right side */}
+        {/* Nav Social — always visible */}
         <Box
           sx={{
-            display: { xs: 'none', md: 'flex' },
+            display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'flex-start',
+            gap: '6px',
             px: '20px',
             py: '18px',
           }}
         >
-          <Typography sx={LABEL_STYLE}>Social media</Typography>
+          <Typography sx={{ ...LABEL_STYLE, display: { xs: 'none', md: 'block' } }}>Social media</Typography>
 
-          {/* GH / LN / ML links */}
-          <Stack direction="row" sx={{ alignItems: 'center' }} spacing={0}>
-              {SOCIAL_LINKS.map((s, i) => (
-                <Stack key={s.label} direction="row" sx={{ alignItems: 'center' }}>
-                  <Box
-                    component="a"
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      fontFamily: '"Geist", "Inter", sans-serif',
-                      fontSize: '0.9rem',
-                      fontWeight: 600,
-                      color: '#fff',
-                      letterSpacing: '0.08em',
-                      lineHeight: '0.9em',
-                      textDecoration: 'none',
-                      transition: 'color 0.2s',
-                      '&:hover': { color: '#00e574' },
-                    }}
-                  >
-                    {s.label}
-                  </Box>
-                  {i < SOCIAL_LINKS.length - 1 && (
-                    <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.05rem', mx: '6px', lineHeight: 1 }}>
-                      /
-                    </Typography>
-                  )}
-                </Stack>
-              ))}
-            </Stack>
+          {/* Icon links */}
+          <Stack direction="row" sx={{ alignItems: 'center', gap: '4px' }}>
+            {SOCIAL_LINKS.map((s) => {
+              const Icon = s.icon
+              return (
+                <Box
+                  key={s.label}
+                  component="a"
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  sx={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'rgba(255,255,255,0.7)',
+                    p: '6px',
+                    borderRadius: '4px',
+                    transition: 'color 0.2s, background 0.2s',
+                    '&:hover': { color: '#00e574', background: 'rgba(0,229,116,0.08)' },
+                  }}
+                >
+                  <Icon sx={{ fontSize: '1.25rem' }} />
+                </Box>
+              )
+            })}
+          </Stack>
         </Box>
 
-        {/* Nav Right — Crevo Menu Button */}
+        {/* Nav Right — Crevo Menu Button (desktop only — hidden on card-stack ≤1024px) */}
         <Box
           sx={{
-            display: 'flex', alignItems: 'center',
+            display: 'none',
+            '@media (min-width: 1025px)': { display: 'flex' },
+            alignItems: 'center',
             px: '16px',
           }}
         >

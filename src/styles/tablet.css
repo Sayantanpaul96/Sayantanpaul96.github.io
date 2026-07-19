@@ -80,6 +80,11 @@
     grid-template-columns: 1fr !important;
   }
 
+  /* Hide hamburger menu — card stack has native scroll navigation */
+  .navbar-menu-btn {
+    display: none !important;
+  }
+
   .glass-card {
     padding: 1rem 1.25rem;
   }
