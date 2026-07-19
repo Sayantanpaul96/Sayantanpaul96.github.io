@@ -8,6 +8,10 @@ import worldTopo from 'world-atlas/land-110m.json'
 const topo    = worldTopo as Topology<{ land: GeometryCollection }>
 const landGeo = feature(topo, topo.objects.land)
 
+// ── Feature flags ─────────────────────────────────────────────────────────────
+/** Set to true to show the rising green fill inside the globe as it loads */
+const SHOW_GLOBE_FILL = true
+
 // ── Satellites ────────────────────────────────────────────────────────────────
 // orbitAngle: rotation of the orbital plane (radians) — creates multi-axis orbits
 interface Sat {
@@ -25,6 +29,17 @@ const SATS: Sat[] = [
   { speed:  0.55, tilt: 1.05, phase: 4.2, orbitR: 1.52, size: 1.8, orbitAngle: Math.PI / 4 },
   { speed: -0.42, tilt: 0.55, phase: 1.3, orbitR: 1.38, size: 2.0, orbitAngle: -Math.PI / 3 },
 ]
+
+// ── Star field ────────────────────────────────────────────────────────────────
+// Generated once at module load — stable across renders
+const STARS = Array.from({ length: 220 }, () => ({
+  x:  Math.random(),          // normalised 0–1 of canvas width
+  y:  Math.random(),          // normalised 0–1 of canvas height
+  r:  Math.random() * 1.1 + 0.15,
+  a:  Math.random() * 0.6 + 0.2,   // base opacity
+  tw: Math.random() * Math.PI * 2, // twinkle phase offset
+  ts: Math.random() * 0.5 + 0.15,  // twinkle speed
+}))
 
 // ── Component ─────────────────────────────────────────────────────────────────
 interface LoaderProps { onDone: () => void }
@@ -65,7 +80,7 @@ export default function Loader({ onDone }: LoaderProps) {
     const cy = H / 2
     const R  = Math.min(W, H) * 0.32
 
-    const LOAD_DUR = 4500
+    const LOAD_DUR = 5000
     const EXIT_DUR = 1100
     let start = 0
 
@@ -98,95 +113,157 @@ export default function Loader({ onDone }: LoaderProps) {
 
       ctx.clearRect(0, 0, W, H)
 
+      // ── Star field ────────────────────────────────────────────────────
+      for (const s of STARS) {
+        const twinkle = 0.82 + 0.18 * Math.sin(ts * 0.001 * s.ts + s.tw)
+        ctx.beginPath()
+        ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255,255,255,${(s.a * twinkle * exitAlpha).toFixed(2)})`
+        ctx.fill()
+      }
+
       const Rs = R * scale
 
-      // d3-geo orthographic projection
+      // d3-geo orthographic projection — longitude rotates slowly over time
       const projection = geoOrthographic()
         .scale(Rs)
         .translate([cx, cy])
-        .rotate([-78, -(20 + viewLat), 0])
+        .rotate([-(78 + ts * 0.004), -(20 + viewLat), 0])
         .clipAngle(90)
 
       const pathFn    = geoPath(projection, ctx)
       const graticule = geoGraticule().step([30, 30])()
 
       // ── Atmosphere glow ───────────────────────────────────────────────────
-      const atm = ctx.createRadialGradient(cx, cy, Rs * 0.90, cx, cy, Rs * 1.18)
-      atm.addColorStop(0,   'transparent')
-      atm.addColorStop(0.5, `rgba(0,229,116,${(0.07 * exitAlpha).toFixed(2)})`)
-      atm.addColorStop(1,   'transparent')
-      ctx.beginPath(); ctx.arc(cx, cy, Rs * 1.18, 0, Math.PI * 2)
+      // Outer haze ring
+      const atm = ctx.createRadialGradient(cx, cy, Rs * 0.82, cx, cy, Rs * 1.24)
+      atm.addColorStop(0,    'transparent')
+      atm.addColorStop(0.40, `rgba(0,229,116,${(0.04 * exitAlpha).toFixed(2)})`)
+      atm.addColorStop(0.75, `rgba(0,229,116,${(0.10 * exitAlpha).toFixed(2)})`)
+      atm.addColorStop(1,    'transparent')
+      ctx.beginPath(); ctx.arc(cx, cy, Rs * 1.24, 0, Math.PI * 2)
       ctx.fillStyle = atm; ctx.fill()
 
       // ── Clip to globe circle ──────────────────────────────────────────────
       ctx.save()
       ctx.beginPath(); ctx.arc(cx, cy, Rs, 0, Math.PI * 2); ctx.clip()
 
-      ctx.fillStyle = '#030810'
+      // Deep space ocean — very dark teal-black
+      ctx.fillStyle = '#020c08'
       ctx.fillRect(cx - Rs - 1, cy - Rs - 1, Rs * 2 + 2, Rs * 2 + 2)
 
-      const fillY = cy + Rs * (1 - 2 * eased)
-      ctx.fillStyle = `rgba(0,229,116,${(0.78 * exitAlpha).toFixed(2)})`
-      ctx.fillRect(cx - Rs - 1, fillY, Rs * 2 + 2, cy + Rs + 1 - fillY)
+      if (SHOW_GLOBE_FILL) {
+        // Deep forest-emerald fill rising from the bottom
+        const fillY = cy + Rs * (1 - 2 * eased)
+        ctx.fillStyle = `rgba(0,72,44,${(0.94 * exitAlpha).toFixed(2)})`
+        ctx.fillRect(cx - Rs - 1, fillY, Rs * 2 + 2, cy + Rs + 1 - fillY)
 
-      ctx.fillStyle = `rgba(0,229,116,${(0.04 * exitAlpha).toFixed(2)})`
-      ctx.fillRect(cx - Rs - 1, cy - Rs - 1, Rs * 2 + 2, fillY - (cy - Rs - 1))
+        // Very faint tint above the fill line
+        ctx.fillStyle = `rgba(0,18,10,${(0.10 * exitAlpha).toFixed(2)})`
+        ctx.fillRect(cx - Rs - 1, cy - Rs - 1, Rs * 2 + 2, fillY - (cy - Rs - 1))
+      }
 
       ctx.beginPath()
       pathFn(graticule)
-      ctx.strokeStyle = `rgba(0,229,116,${(0.07 * exitAlpha).toFixed(2)})`
+      ctx.strokeStyle = `rgba(0,229,116,${(0.11 * exitAlpha).toFixed(2)})`
       ctx.lineWidth = 0.5
       ctx.stroke()
 
       ctx.beginPath()
       pathFn(landGeo)
-      ctx.fillStyle = `rgba(6,10,18,${(0.90 * exitAlpha).toFixed(2)})`
+      ctx.fillStyle = `rgba(3,12,8,${(0.86 * exitAlpha).toFixed(2)})`
       ctx.fill()
-      ctx.strokeStyle = `rgba(0,229,116,${(0.30 * exitAlpha).toFixed(2)})`
-      ctx.lineWidth = 0.8
+      ctx.strokeStyle = `rgba(0,229,116,${(0.55 * exitAlpha).toFixed(2)})`
+      ctx.lineWidth = 0.9
       ctx.stroke()
+
+      // ── Sphere shading — dark vignette at edges to sell the 3-D curve ────
+      const vgn = ctx.createRadialGradient(cx, cy, Rs * 0.45, cx, cy, Rs)
+      vgn.addColorStop(0, 'transparent')
+      vgn.addColorStop(1, `rgba(0,0,0,${(0.55 * exitAlpha).toFixed(2)})`)
+      ctx.beginPath(); ctx.arc(cx, cy, Rs, 0, Math.PI * 2)
+      ctx.fillStyle = vgn; ctx.fill()
+
+      // ── Specular highlight — subtle top-left light source ─────────────────
+      const spec = ctx.createRadialGradient(
+        cx - Rs * 0.28, cy - Rs * 0.28, 0,
+        cx - Rs * 0.28, cy - Rs * 0.28, Rs * 0.7
+      )
+      spec.addColorStop(0, `rgba(160,255,200,${(0.07 * exitAlpha).toFixed(2)})`)
+      spec.addColorStop(1, 'transparent')
+      ctx.beginPath(); ctx.arc(cx, cy, Rs, 0, Math.PI * 2)
+      ctx.fillStyle = spec; ctx.fill()
 
       ctx.restore()
 
       // ── Globe border ──────────────────────────────────────────────────────
       ctx.beginPath(); ctx.arc(cx, cy, Rs, 0, Math.PI * 2)
-      ctx.strokeStyle = `rgba(0,229,116,${(0.20 * exitAlpha).toFixed(2)})`
-      ctx.lineWidth = 1
+      ctx.strokeStyle = `rgba(0,229,116,${(0.38 * exitAlpha).toFixed(2)})`
+      ctx.lineWidth = 1.2
       ctx.stroke()
 
       // ── Multi-axis satellites ─────────────────────────────────────────────
       if (exitAlpha > 0.01) {
+        const TRAIL_LEN  = 36
+        const TRAIL_STEP = 0.068  // radians per step — total arc ≈ 2.4 rad (≈140°)
+
         for (const sat of SATS) {
-          const t  = ts * 0.001 * sat.speed + sat.phase
+          const t      = ts * 0.001 * sat.speed + sat.phase
           const orbitA = Rs * sat.orbitR
           const orbitB = orbitA * 0.38 * Math.abs(Math.cos(sat.tilt))
+          const cosA   = Math.cos(sat.orbitAngle)
+          const sinA   = Math.sin(sat.orbitAngle)
 
-          const cosA = Math.cos(sat.orbitAngle)
-          const sinA = Math.sin(sat.orbitAngle)
+          // Collect trail points: [0] = head (nearest satellite), [TRAIL_LEN] = tail
+          const trailDir = sat.speed >= 0 ? -1 : 1
+          const pts: [number, number][] = []
+          for (let i = 0; i <= TRAIL_LEN; i++) {
+            const tt  = t + i * TRAIL_STEP * trailDir
+            const tex = orbitA * Math.cos(tt)
+            const tey = orbitB * Math.sin(tt)
+            pts.push([cx + tex * cosA - tey * sinA, cy + tex * sinA + tey * cosA])
+          }
 
-          // Orbit ellipse ring — rotated to the satellite's orbital plane
-          ctx.beginPath()
-          ctx.ellipse(cx, cy, orbitA, orbitB, sat.orbitAngle, 0, Math.PI * 2)
-          ctx.strokeStyle = `rgba(0,229,116,${(0.09 * exitAlpha).toFixed(2)})`
-          ctx.lineWidth = 0.6
-          ctx.stroke()
+          // ── Outer comet body — thick green, fades toward tail ──────────
+          const maxW = sat.size * 1.4
+          for (let i = TRAIL_LEN - 1; i >= 0; i--) {
+            const frac = 1 - i / TRAIL_LEN          // 0 at tail, 1 at head
+            const ease = Math.pow(frac, 0.55)        // slow fade near head, fast at tail
+            ctx.beginPath()
+            ctx.moveTo(pts[i + 1][0], pts[i + 1][1])
+            ctx.lineTo(pts[i][0],     pts[i][1])
+            ctx.lineCap   = 'round'
+            ctx.lineWidth = Math.max(0.2, maxW * ease)
+            ctx.strokeStyle = `rgba(0,229,116,${(0.65 * ease * exitAlpha).toFixed(2)})`
+            ctx.stroke()
+          }
 
-          // Satellite position on the rotated ellipse
-          const ex = orbitA * Math.cos(t)
-          const ey = orbitB * Math.sin(t)
-          const sx = cx + ex * cosA - ey * sinA
-          const sy = cy + ex * sinA + ey * cosA
+          // ── Inner bright core — thin white-green streak near the head ──
+          const coreLen = Math.min(10, TRAIL_LEN - 1)
+          for (let i = coreLen; i >= 0; i--) {
+            const frac = 1 - i / coreLen
+            const ease = Math.pow(frac, 0.7)
+            ctx.beginPath()
+            ctx.moveTo(pts[i + 1][0], pts[i + 1][1])
+            ctx.lineTo(pts[i][0],     pts[i][1])
+            ctx.lineCap   = 'round'
+            ctx.lineWidth = Math.max(0.2, sat.size * 0.55 * ease)
+            ctx.strokeStyle = `rgba(180,255,210,${(0.85 * ease * exitAlpha).toFixed(2)})`
+            ctx.stroke()
+          }
 
-          // Glow halo
-          const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, 14)
-          grd.addColorStop(0,   `rgba(0,229,116,${(0.88 * exitAlpha).toFixed(2)})`)
-          grd.addColorStop(0.4, `rgba(0,229,116,${(0.20 * exitAlpha).toFixed(2)})`)
+          // ── Satellite head — glow + core dot ──────────────────────────
+          const [sx, sy] = pts[0]
+          const dotR = sat.size * 2.0
+
+          const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, dotR * 5)
+          grd.addColorStop(0,   `rgba(0,229,116,${(0.92 * exitAlpha).toFixed(2)})`)
+          grd.addColorStop(0.4, `rgba(0,229,116,${(0.22 * exitAlpha).toFixed(2)})`)
           grd.addColorStop(1,   'transparent')
-          ctx.beginPath(); ctx.arc(sx, sy, 14, 0, Math.PI * 2)
+          ctx.beginPath(); ctx.arc(sx, sy, dotR * 5, 0, Math.PI * 2)
           ctx.fillStyle = grd; ctx.fill()
 
-          // Core dot
-          ctx.beginPath(); ctx.arc(sx, sy, sat.size, 0, Math.PI * 2)
+          ctx.beginPath(); ctx.arc(sx, sy, dotR, 0, Math.PI * 2)
           ctx.fillStyle = `rgba(255,255,255,${exitAlpha.toFixed(2)})`; ctx.fill()
         }
       }
